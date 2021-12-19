@@ -1,6 +1,6 @@
 {
   "name": "susa-js",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Handles susa selection for number",
   "main": "src/index.js",
   "scripts": {
