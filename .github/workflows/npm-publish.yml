@@ -1,8 +1,11 @@
 name: Node.js Package Publish
 
 on:
+  push:
+    braches:
+      - "main"
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   publish:
@@ -16,7 +19,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm install
+      - run: npm ci
+      - run: npm test
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
