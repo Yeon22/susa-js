@@ -1,16 +1,16 @@
 const assert = require("assert");
 const { susa } = require("../src");
 
-describe("convertNumToSusa()", function () {
+describe("convertNumToSusa()", () => {
   describe("argument is not valid number", () => {
     it("throw error when argument is not number", () => {
       assert.throws(() => susa("hi"), Error, "argument is not number");
     });
-    it("throw error when argument is over 99999", () => {
+    it("throw error when argument is over 999,999,999,999", () => {
       assert.throws(
-        () => susa("100000"),
+        () => susa(1000000000000),
         Error,
-        "over 99999 number is not support yet"
+        "over 999999999999 number is not support yet"
       );
     });
   });
@@ -41,27 +41,6 @@ describe("convertNumToSusa()", function () {
       assert.equal(susa(100), "백");
       assert.equal(susa(101), "백하나");
       assert.equal(susa(111), "백열하나");
-      assert.equal(susa(200), "이백");
-      assert.equal(susa(202), "이백둘");
-      assert.equal(susa(222), "이백스물둘");
-      assert.equal(susa(300), "삼백");
-      assert.equal(susa(303), "삼백셋");
-      assert.equal(susa(333), "삼백서른셋");
-      assert.equal(susa(400), "사백");
-      assert.equal(susa(404), "사백넷");
-      assert.equal(susa(444), "사백마흔넷");
-      assert.equal(susa(500), "오백");
-      assert.equal(susa(505), "오백다섯");
-      assert.equal(susa(555), "오백쉰다섯");
-      assert.equal(susa(600), "육백");
-      assert.equal(susa(606), "육백여섯");
-      assert.equal(susa(666), "육백예순여섯");
-      assert.equal(susa(700), "칠백");
-      assert.equal(susa(707), "칠백일곱");
-      assert.equal(susa(777), "칠백일흔일곱");
-      assert.equal(susa(800), "팔백");
-      assert.equal(susa(808), "팔백여덟");
-      assert.equal(susa(888), "팔백여든여덟");
       assert.equal(susa(900), "구백");
       assert.equal(susa(909), "구백아홉");
       assert.equal(susa(999), "구백아흔아홉");
@@ -71,34 +50,6 @@ describe("convertNumToSusa()", function () {
       assert.equal(susa(1001), "천하나");
       assert.equal(susa(1011), "천열하나");
       assert.equal(susa(1111), "천백열하나");
-      assert.equal(susa(2000), "이천");
-      assert.equal(susa(2002), "이천둘");
-      assert.equal(susa(2022), "이천스물둘");
-      assert.equal(susa(2222), "이천이백스물둘");
-      assert.equal(susa(3000), "삼천");
-      assert.equal(susa(3003), "삼천셋");
-      assert.equal(susa(3033), "삼천서른셋");
-      assert.equal(susa(3333), "삼천삼백서른셋");
-      assert.equal(susa(4000), "사천");
-      assert.equal(susa(4004), "사천넷");
-      assert.equal(susa(4044), "사천마흔넷");
-      assert.equal(susa(4444), "사천사백마흔넷");
-      assert.equal(susa(5000), "오천");
-      assert.equal(susa(5005), "오천다섯");
-      assert.equal(susa(5055), "오천쉰다섯");
-      assert.equal(susa(5555), "오천오백쉰다섯");
-      assert.equal(susa(6000), "육천");
-      assert.equal(susa(6006), "육천여섯");
-      assert.equal(susa(6066), "육천예순여섯");
-      assert.equal(susa(6666), "육천육백예순여섯");
-      assert.equal(susa(7000), "칠천");
-      assert.equal(susa(7007), "칠천일곱");
-      assert.equal(susa(7077), "칠천일흔일곱");
-      assert.equal(susa(7777), "칠천칠백일흔일곱");
-      assert.equal(susa(8000), "팔천");
-      assert.equal(susa(8008), "팔천여덟");
-      assert.equal(susa(8088), "팔천여든여덟");
-      assert.equal(susa(8888), "팔천팔백여든여덟");
       assert.equal(susa(9000), "구천");
       assert.equal(susa(9009), "구천아홉");
       assert.equal(susa(9099), "구천아흔아홉");
@@ -110,46 +61,134 @@ describe("convertNumToSusa()", function () {
       assert.equal(susa(10011), "만열하나");
       assert.equal(susa(10111), "만백열하나");
       assert.equal(susa(11111), "만천백열하나");
-      assert.equal(susa(20000), "이만");
-      assert.equal(susa(20002), "이만둘");
-      assert.equal(susa(20022), "이만스물둘");
-      assert.equal(susa(20222), "이만이백스물둘");
-      assert.equal(susa(22222), "이만이천이백스물둘");
-      assert.equal(susa(30000), "삼만");
-      assert.equal(susa(30003), "삼만셋");
-      assert.equal(susa(30033), "삼만서른셋");
-      assert.equal(susa(30333), "삼만삼백서른셋");
-      assert.equal(susa(33333), "삼만삼천삼백서른셋");
-      assert.equal(susa(40000), "사만");
-      assert.equal(susa(40004), "사만넷");
-      assert.equal(susa(40044), "사만마흔넷");
-      assert.equal(susa(40444), "사만사백마흔넷");
-      assert.equal(susa(44444), "사만사천사백마흔넷");
-      assert.equal(susa(50000), "오만");
-      assert.equal(susa(50005), "오만다섯");
-      assert.equal(susa(50055), "오만쉰다섯");
-      assert.equal(susa(50555), "오만오백쉰다섯");
-      assert.equal(susa(55555), "오만오천오백쉰다섯");
-      assert.equal(susa(60000), "육만");
-      assert.equal(susa(60006), "육만여섯");
-      assert.equal(susa(60066), "육만예순여섯");
-      assert.equal(susa(60666), "육만육백예순여섯");
-      assert.equal(susa(66666), "육만육천육백예순여섯");
-      assert.equal(susa(70000), "칠만");
-      assert.equal(susa(70007), "칠만일곱");
-      assert.equal(susa(70077), "칠만일흔일곱");
-      assert.equal(susa(70777), "칠만칠백일흔일곱");
-      assert.equal(susa(77777), "칠만칠천칠백일흔일곱");
-      assert.equal(susa(80000), "팔만");
-      assert.equal(susa(80008), "팔만여덟");
-      assert.equal(susa(80088), "팔만여든여덟");
-      assert.equal(susa(80888), "팔만팔백여든여덟");
-      assert.equal(susa(88888), "팔만팔천팔백여든여덟");
       assert.equal(susa(90000), "구만");
       assert.equal(susa(90009), "구만아홉");
       assert.equal(susa(90099), "구만아흔아홉");
       assert.equal(susa(90999), "구만구백아흔아홉");
       assert.equal(susa(99999), "구만구천구백아흔아홉");
+    });
+    it("replaces the number(<1,000,000) to appropriate susa", () => {
+      assert.equal(susa(100000), "십만");
+      assert.equal(susa(100001), "십만하나");
+      assert.equal(susa(100011), "십만열하나");
+      assert.equal(susa(100111), "십만백열하나");
+      assert.equal(susa(101111), "십만천백열하나");
+      assert.equal(susa(111111), "십일만천백열하나");
+      assert.equal(susa(900000), "구십만");
+      assert.equal(susa(900009), "구십만아홉");
+      assert.equal(susa(900099), "구십만아흔아홉");
+      assert.equal(susa(900999), "구십만구백아흔아홉");
+      assert.equal(susa(909999), "구십만구천구백아흔아홉");
+      assert.equal(susa(999999), "구십구만구천구백아흔아홉");
+    });
+    it("replaces the number(<10,000,000) to appropriate susa", () => {
+      assert.equal(susa(1000000), "백만");
+      assert.equal(susa(1000001), "백만하나");
+      assert.equal(susa(1000011), "백만열하나");
+      assert.equal(susa(1000111), "백만백열하나");
+      assert.equal(susa(1001111), "백만천백열하나");
+      assert.equal(susa(1011111), "백일만천백열하나");
+      assert.equal(susa(1111111), "백십일만천백열하나");
+      assert.equal(susa(9000000), "구백만");
+      assert.equal(susa(9000009), "구백만아홉");
+      assert.equal(susa(9000099), "구백만아흔아홉");
+      assert.equal(susa(9000999), "구백만구백아흔아홉");
+      assert.equal(susa(9009999), "구백만구천구백아흔아홉");
+      assert.equal(susa(9099999), "구백구만구천구백아흔아홉");
+      assert.equal(susa(9999999), "구백구십구만구천구백아흔아홉");
+    });
+    it("replaces the number(<100,000,000) to appropriate susa", () => {
+      assert.equal(susa(10000000), "천만");
+      assert.equal(susa(10000001), "천만하나");
+      assert.equal(susa(10000011), "천만열하나");
+      assert.equal(susa(10000111), "천만백열하나");
+      assert.equal(susa(10001111), "천만천백열하나");
+      assert.equal(susa(10011111), "천일만천백열하나");
+      assert.equal(susa(10111111), "천십일만천백열하나");
+      assert.equal(susa(11111111), "천백십일만천백열하나");
+      assert.equal(susa(90000000), "구천만");
+      assert.equal(susa(90000009), "구천만아홉");
+      assert.equal(susa(90000099), "구천만아흔아홉");
+      assert.equal(susa(90000999), "구천만구백아흔아홉");
+      assert.equal(susa(90009999), "구천만구천구백아흔아홉");
+      assert.equal(susa(90099999), "구천구만구천구백아흔아홉");
+      assert.equal(susa(90999999), "구천구십구만구천구백아흔아홉");
+      assert.equal(susa(99999999), "구천구백구십구만구천구백아흔아홉");
+    });
+    it("replaces the number(<1,000,000,000) to appropriate susa", () => {
+      assert.equal(susa(100000000), "억");
+      assert.equal(susa(100000001), "억하나");
+      assert.equal(susa(100000011), "억열하나");
+      assert.equal(susa(100000111), "억백열하나");
+      assert.equal(susa(100001111), "억천백열하나");
+      assert.equal(susa(100011111), "억만천백열하나");
+      assert.equal(susa(100111111), "억십일만천백열하나");
+      assert.equal(susa(101111111), "억백십일만천백열하나");
+      assert.equal(susa(111111111), "억천백십일만천백열하나");
+      assert.equal(susa(900000000), "구억");
+      assert.equal(susa(900000009), "구억아홉");
+      assert.equal(susa(900000099), "구억아흔아홉");
+      assert.equal(susa(900000999), "구억구백아흔아홉");
+      assert.equal(susa(900009999), "구억구천구백아흔아홉");
+      assert.equal(susa(900099999), "구억구만구천구백아흔아홉");
+      assert.equal(susa(900999999), "구억구십구만구천구백아흔아홉");
+      assert.equal(susa(909999999), "구억구백구십구만구천구백아흔아홉");
+      assert.equal(susa(999999999), "구억구천구백구십구만구천구백아흔아홉");
+    });
+    it("replaces the number(<10,000,000,000) to appropriate susa", () => {
+      assert.equal(susa(1000000000), "십억");
+      assert.equal(susa(1000000001), "십억하나");
+      assert.equal(susa(1000000011), "십억열하나");
+      assert.equal(susa(1000000111), "십억백열하나");
+      assert.equal(susa(1000001111), "십억천백열하나");
+      assert.equal(susa(1000011111), "십억만천백열하나");
+      assert.equal(susa(1000111111), "십억십일만천백열하나");
+      assert.equal(susa(1001111111), "십억백십일만천백열하나");
+      assert.equal(susa(1011111111), "십억천백십일만천백열하나");
+      assert.equal(susa(1111111111), "십일억천백십일만천백열하나");
+      assert.equal(susa(9000000000), "구십억");
+      assert.equal(susa(9000000009), "구십억아홉");
+      assert.equal(susa(9000000099), "구십억아흔아홉");
+      assert.equal(susa(9000000999), "구십억구백아흔아홉");
+      assert.equal(susa(9000009999), "구십억구천구백아흔아홉");
+      assert.equal(susa(9000099999), "구십억구만구천구백아흔아홉");
+      assert.equal(susa(9000999999), "구십억구십구만구천구백아흔아홉");
+      assert.equal(susa(9009999999), "구십억구백구십구만구천구백아흔아홉");
+      assert.equal(susa(9099999999), "구십억구천구백구십구만구천구백아흔아홉");
+      assert.equal(
+        susa(9999999999),
+        "구십구억구천구백구십구만구천구백아흔아홉"
+      );
+    });
+    it("replaces the number(<100,000,000,000) to appropriate susa", () => {
+      assert.equal(susa(10000000000), "백억");
+      assert.equal(susa(10000000001), "백억하나");
+      assert.equal(susa(10000000011), "백억열하나");
+      assert.equal(susa(10000000111), "백억백열하나");
+      assert.equal(susa(10000001111), "백억천백열하나");
+      assert.equal(susa(10000011111), "백억만천백열하나");
+      assert.equal(susa(10000111111), "백억십일만천백열하나");
+      assert.equal(susa(10001111111), "백억백십일만천백열하나");
+      assert.equal(susa(10011111111), "백억천백십일만천백열하나");
+      assert.equal(susa(10111111111), "백일억천백십일만천백열하나");
+      assert.equal(susa(11111111111), "백십일억천백십일만천백열하나");
+      assert.equal(susa(90000000000), "구백억");
+      assert.equal(susa(90000000009), "구백억아홉");
+      assert.equal(susa(90000000099), "구백억아흔아홉");
+      assert.equal(susa(90000000999), "구백억구백아흔아홉");
+      assert.equal(susa(90000009999), "구백억구천구백아흔아홉");
+      assert.equal(susa(90000099999), "구백억구만구천구백아흔아홉");
+      assert.equal(susa(90000999999), "구백억구십구만구천구백아흔아홉");
+      assert.equal(susa(90009999999), "구백억구백구십구만구천구백아흔아홉");
+      assert.equal(susa(90099999999), "구백억구천구백구십구만구천구백아흔아홉");
+      assert.equal(
+        susa(90999999999),
+        "구백구억구천구백구십구만구천구백아흔아홉"
+      );
+      assert.equal(
+        susa(99999999999),
+        "구백구십구억구천구백구십구만구천구백아흔아홉"
+      );
     });
   });
 });

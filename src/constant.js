@@ -1,5 +1,6 @@
 const MIN_NUMBER = 10;
-const MAX_NUMBER = 100000;
+const MAX_SUSA = 1000000000000;
+const MAX_NUM_KR = 10000;
 
 const SUSA = {
   1: "하나",
@@ -42,4 +43,4 @@ const NUM_KR = {
   1000: "천",
 };
 
-module.exports = { SUSA, MAX_NUMBER, MIN_NUMBER, NUM_KR };
+module.exports = { SUSA, MAX_NUM_KR, MAX_SUSA, MIN_NUMBER, NUM_KR };
