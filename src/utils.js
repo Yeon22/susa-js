@@ -1,6 +1,6 @@
 const { MIN_NUMBER, MAX_SUSA, SUSA } = require("./constant");
 
-const getDividedNumber = (num) => {
+const getDividedNumber = (num = 0) => {
   if (num < MIN_NUMBER) return 0;
   if (num >= MIN_NUMBER && num < 100) return 10;
   if (num >= 100 && num < 1000) return 100;
@@ -10,7 +10,8 @@ const getDividedNumber = (num) => {
   if (num >= MAX_SUSA) return MAX_SUSA;
 };
 
-const getBase = ({ num, dividedNum, match = SUSA }) => {
+const getMatchSusaOrKr = (num, match = SUSA) => {
+  const dividedNum = getDividedNumber(num);
   if (isNaN(Number(num)) || isNaN(Number(dividedNum)))
     throw new Error("argument is not number");
 
@@ -20,6 +21,12 @@ const getBase = ({ num, dividedNum, match = SUSA }) => {
   return null;
 };
 
+const getPortion = (num) => {
+  const dividedNum = getDividedNumber(num);
+  if (dividedNum < 1) throw new Error(`Can't divide by 0`);
+  return Math.floor(num / dividedNum) * dividedNum;
+};
+
 const checkNumError = (num, max = MAX_SUSA) => {
   if (isNaN(Number(num))) throw new Error("argument is not number");
   if (num >= max) throw new Error(`over ${max - 1} number is not support yet`);
@@ -27,4 +34,17 @@ const checkNumError = (num, max = MAX_SUSA) => {
   return false;
 };
 
-module.exports = { getDividedNumber, getBase, checkNumError };
+const hasMiddleNumber = (num, match = SUSA) => {
+  const dividedNum = getDividedNumber(num);
+  const portion = getPortion(num);
+  if (dividedNum < 1) throw new Error(`Can't divide by 0`);
+  return portion > dividedNum && !match[portion];
+};
+
+module.exports = {
+  getDividedNumber,
+  getMatchSusaOrKr,
+  getPortion,
+  checkNumError,
+  hasMiddleNumber,
+};
